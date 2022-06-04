@@ -1,0 +1,4446 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "aptpay App API",
+    "description": "Find out how your APIs work",
+    "license": {
+      "name": "tejas"
+    }
+  },
+  "host": "uataptpay.moreyeahs.in",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "mobile",
+      "description": "API for mobile users in the system"
+    }
+  ],
+  "schemes": ["https", "http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/auth/getActiveCountries": {
+      "get": {
+        "summary": "get Active Countries to signup user",
+        "tags": ["Users"],
+        "description": "get Active Countries to signup user",
+
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Login Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "get info of signin user",
+        "tags": ["Users"],
+        "description": "get info of signin user",
+        "parameters": [
+          {
+            "in": "headers",
+            "description": "Login me",
+            "schema": {}
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Login Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "summary": "signup user",
+        "tags": ["Users"],
+        "description": "signup user",
+        "parameters": [
+          {
+            "name": "signup",
+            "in": "body",
+            "description": "Signup user",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Signup Success",
+            "schema": {
+              "$ref": "#/definitions/signupResponse"
+            }
+          },
+          "200": {
+            "description": "Signup failed",
+            "schema": {
+              "$ref": "#/definitions/signupErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/identities/{ID}": {
+      "get": {
+        "summary": "get Identity",
+        "tags": ["Identity"],
+        "description": "get Identity",
+        "parameters": [
+          {
+            "name": "get Identity",
+            "in": "path",
+            "schema": {}
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {}
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/auth/identities/add/requirements/{ID}": {
+      "get": {
+        "summary": "get Identity requirements",
+        "tags": ["Identity"],
+        "description": "get Identity requirements",
+        "parameters": [
+          {
+            "name": "get Identity requirements",
+            "in": "path",
+            "schema": {}
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {}
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/auth/identities/sendverificationlink": {
+      "post": {
+        "summary": "send verification link",
+        "tags": ["Identity"],
+        "description": "send verification link",
+        "parameters": [
+          {
+            "name": "sendverificationlink",
+            "in": "body",
+            "description": "send verification link",
+            "schema": {
+              "$ref": "#/definitions/sendverificationlink"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/sendverificationlinkResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/sendverificationlinkErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/reports/unusual-transaction": {
+      "post": {
+        "summary": "unusual-transaction",
+        "tags": ["Identity"],
+        "description": "unusual-transaction",
+        "parameters": [
+          {
+            "name": "unusual-transaction",
+            "in": "body",
+            "description": "send verification link",
+            "schema": {
+              "$ref": "#/definitions/unusual-transaction"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/unusual-transactionResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/unusual-transactionErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/socialSignup": {
+      "post": {
+        "summary": "social signup of user",
+        "tags": ["Users"],
+        "description": "social signup of user",
+        "parameters": [
+          {
+            "name": "socialsignup",
+            "in": "body",
+            "description": "social signup of user ",
+            "schema": {
+              "$ref": "#/definitions/socialsignup"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "social signup of user Success",
+            "schema": {
+              "$ref": "#/definitions/socialsignupResponse"
+            }
+          },
+          "200": {
+            "description": "social signup of user failed",
+            "schema": {
+              "$ref": "#/definitions/socialsignupErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/verifyOtp": {
+      "post": {
+        "summary": "OTP verification of user",
+        "tags": ["Users"],
+        "description": "OTP verification of user",
+        "parameters": [
+          {
+            "name": "verifyOtp",
+            "in": "body",
+            "description": "OTP verification of user",
+            "schema": {
+              "$ref": "#/definitions/verifyOtp"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "OTP verification of user success",
+            "schema": {
+              "$ref": "#/definitions/verifyOtpResponse"
+            }
+          },
+          "200": {
+            "description": "OTP verification of user failed",
+            "schema": {
+              "$ref": "#/definitions/verifyOtpErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/reSendOtp": {
+      "post": {
+        "summary": "resend OTP of user",
+        "tags": ["Users"],
+        "description": "resend OTP of user",
+        "parameters": [
+          {
+            "name": "reSendOtp",
+            "in": "body",
+            "description": "resend OTP of user",
+            "schema": {
+              "$ref": "#/definitions/reSendOtp"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "resend OTP verification of user success",
+            "schema": {
+              "$ref": "#/definitions/resendOtpResponse"
+            }
+          },
+          "200": {
+            "description": "resend OTP verification of user failed",
+            "schema": {
+              "$ref": "#/definitions/resendOtpErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/resetPassword": {
+      "post": {
+        "summary": "reset password of user",
+        "tags": ["Users"],
+        "description": "reset password of user",
+        "parameters": [
+          {
+            "name": "resetPassword",
+            "in": "body",
+            "description": "reset password of user",
+            "schema": {
+              "$ref": "#/definitions/resetPassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "reset password of user success",
+            "schema": {
+              "$ref": "#/definitions/resetPasswordResponse"
+            }
+          },
+          "200": {
+            "description": "reset password of user failed",
+            "schema": {
+              "$ref": "#/definitions/resetPasswordErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/changePassword": {
+      "post": {
+        "summary": "change password of user",
+        "tags": ["Users"],
+        "description": "change password of user",
+        "parameters": [
+          {
+            "name": "change",
+            "in": "body",
+            "description": "change password of user",
+            "schema": {
+              "$ref": "#/definitions/changePassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "change password of user success",
+            "schema": {
+              "$ref": "#/definitions/changePasswordResponse"
+            }
+          },
+          "200": {
+            "description": "change password of user failed",
+            "schema": {
+              "$ref": "#/definitions/changePasswordErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/socialSignin": {
+      "post": {
+        "summary": "social Signin of user",
+        "tags": ["Users"],
+        "description": "social Signin of user",
+        "parameters": [
+          {
+            "name": "socialSignin",
+            "in": "body",
+            "description": "social Signin of user",
+            "schema": {
+              "$ref": "#/definitions/socialSignin"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "socialSignin Success",
+            "schema": {
+              "$ref": "#/definitions/socialSigninResponse"
+            }
+          },
+          "200": {
+            "description": "socialSignin Success",
+            "schema": {
+              "$ref": "#/definitions/socialSigninErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "summary": "signin user",
+        "tags": ["Users"],
+        "description": "signin user",
+        "parameters": [
+          {
+            "name": "signin",
+            "in": "body",
+            "description": "signin user",
+            "schema": {
+              "$ref": "#/definitions/signin"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "signin Success",
+            "schema": {
+              "$ref": "#/definitions/signinResponse"
+            }
+          },
+          "200": {
+            "description": "signin failed",
+            "schema": {
+              "$ref": "#/definitions/signinErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/AddActiveCountries": {
+      "post": {
+        "summary": "Add Active Countries ",
+        "tags": ["Users"],
+        "description": "Add Active Countries",
+        "parameters": [
+          {
+            "name": "AddActiveCountries",
+            "in": "body",
+            "description": "Add Active Countries",
+            "schema": {
+              "$ref": "#/definitions/AddActiveCountries"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Add Active Countries Success",
+            "schema": {
+              "$ref": "#/definitions/AddActiveCountriesResponse"
+            }
+          },
+          "200": {
+            "description": "Add Active Countries failed",
+            "schema": {
+              "$ref": "#/definitions/AddActiveCountriesErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateUserDetails": {
+      "put": {
+        "summary": "update user details",
+        "tags": ["Users"],
+        "description": "update user details",
+        "parameters": [
+          {
+            "name": "update",
+            "in": "body",
+            "description": "update user details",
+            "schema": {
+              "$ref": "#/definitions/updateUserDetails"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "updateUserDetails success",
+            "schema": {
+              "$ref": "#/definitions/updateUserDetailsResponse"
+            }
+          },
+          "200": {
+            "description": "updateUserDetails failed",
+            "schema": {
+              "$ref": "#/definitions/updateUserDetailsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateUserProfiles": {
+      "put": {
+        "summary": "update profile V1",
+        "tags": ["Users"],
+        "description": "update user profile",
+        "parameters": [
+          {
+            "name": "update",
+            "in": "body",
+            "description": "update user profile",
+            "schema": {
+              "$ref": "#/definitions/updateUserProfiles"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "updateUserProfile success",
+            "schema": {
+              "$ref": "#/definitions/updateUserProfilesResponse"
+            }
+          },
+          "200": {
+            "description": "updateUserProfiles failed",
+            "schema": {
+              "$ref": "#/definitions/updateUserProfilesErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/wList": {
+      "post": {
+        "summary": "WList",
+        "tags": ["Users"],
+        "description": "wList",
+        "parameters": [
+          {
+            "name": "wList",
+            "in": "body",
+            "description": "wList",
+            "schema": {
+              "$ref": "#/definitions/wList"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "wList Success",
+            "schema": {
+              "$ref": "#/definitions/wListResponse"
+            }
+          },
+          "200": {
+            "description": "wList Failed",
+            "schema": {
+              "$ref": "#/definitions/wListErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/addKyc": {
+      "post": {
+        "summary": "addKyc",
+        "tags": ["addKyc"],
+        "description": "addKyc",
+        "parameters": [
+          {
+            "name": "addKyc",
+            "in": "body",
+            "description": "addKyc for user",
+            "schema": {
+              "$ref": "#/definitions/addKyc"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/addKyc"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/addKyc"
+            }
+          }
+        }
+      }
+    },
+    "/auth/kycDone": {
+      "get": {
+        "summary": "addKyc",
+        "tags": ["KYC"],
+        "description": "kycDone",
+        "parameters": [
+          {
+            "name": "kycDone",
+            "in": "headers",
+            "description": "KYC Done user",
+            "schema": {
+              "$ref": "#/definitions/kycDone"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/kycDoneResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/kycDoneErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/auth/getUserByEmailSearch": {
+      "post": {
+        "summary": "getUserByEmail",
+        "tags": ["Users"],
+        "description": "getUserByEmail",
+        "parameters": [
+          {
+            "name": "getUserByEmail",
+            "in": "body",
+            "description": "getUserByEmail for user",
+            "schema": {
+              "$ref": "#/definitions/getUserByEmailSearch"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getUserByEmailSearchResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getUserByEmailSearchErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/wallet/createWallet": {
+      "post": {
+        "summary": "walletCreate",
+        "tags": ["wallet"],
+        "description": "walletCreate",
+        "parameters": [
+          {
+            "name": "walletCreate",
+            "in": "body",
+            "description": "walletCreate for user",
+            "schema": {
+              "$ref": "#/definitions/walletCreate"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/walletCreateResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/walletCreateErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/addWalletBalance": {
+      "post": {
+        "summary": "add fund to wallet",
+        "tags": ["wallet"],
+        "description": "add fund to wallet",
+        "parameters": [
+          {
+            "name": "add fund to wallet",
+            "in": "body",
+            "description": "add fund to wallet for user",
+            "schema": {
+              "$ref": "#/definitions/walletAdd"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/walletAddResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/walletAddErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/sendWalletBalance": {
+      "post": {
+        "summary": "withdraw fund from wallet",
+        "tags": ["wallet"],
+        "description": "withdraw fund from wallet",
+        "parameters": [
+          {
+            "name": "withdraw fund from wallet",
+            "in": "body",
+            "description": "withdraw fund from wallet",
+            "schema": {
+              "$ref": "#/definitions/walletWithdraw"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/walletWithdrawResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/walletWithdrawErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/getWalletBalance": {
+      "get": {
+        "summary": "getWalletBalance",
+        "tags": ["wallet"],
+        "description": "getWalletBalance",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getWalletBalanceResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getWalletBalanceErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/GetWalletTransactionHistory": {
+      "get": {
+        "summary": "Get Wallet Transaction History",
+        "tags": ["wallet"],
+        "description": "Get Wallet Transaction History",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/GetWalletTransactionHistoryErrorResponse"
+            }
+          },
+
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/GetWalletTransactionHistory"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/disableWallet": {
+      "put": {
+        "summary": "Disable Wallet",
+        "tags": ["wallet"],
+        "description": "Disable Wallet",
+        "parameters": [
+          {
+            "name": "Disable Wallet",
+            "in": "body",
+            "description": "Disable Wallet",
+            "schema": {
+              "$ref": "#/definitions/disableWallet"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/disableWalletResponse"
+            }
+          },
+
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/disableWalletErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/enableWallet": {
+      "put": {
+        "summary": "Enable Wallet",
+        "tags": ["wallet"],
+        "description": "Enaable Wallet",
+        "parameters": [
+          {
+            "name": "Enable Wallet",
+            "in": "body",
+            "description": "Enable Wallet",
+            "schema": {
+              "$ref": "#/definitions/enableWallet"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/enableWalletResponse"
+            }
+          },
+
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/enableWalletErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/disbursement/addDisbursementV1": {
+      "post": {
+        "summary": "Add Bank and Add Card",
+        "tags": ["Disbursement"],
+        "description": "Add Disbursement, *referenceId should be unique",
+        "parameters": [
+          {
+            "name": "Add Bank",
+            "in": "body",
+            "description": "Add Bank",
+            "schema": {
+              "$ref": "#/definitions/addDisbursementV1"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/addDisbursementV1Response"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/addDisbursementV1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/disbursement/disbursements/{disbursement_id}": {
+      "get": {
+        "summary": "get disbursement status",
+        "tags": ["Disbursement"],
+        "description": "get disbursement status",
+        "parameters": [
+          {
+            "name": "disbursement_id",
+            "in": "path",
+            "schema": {}
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {}
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/disbursement/checkAccount": {
+      "post": {
+        "summary": "check Account",
+        "tags": ["Disbursement"],
+        "description": "check Account",
+        "parameters": [
+          {
+            "name": "check Account",
+            "in": "body",
+            "description": "checkAccount",
+            "schema": {
+              "$ref": "#/definitions/checkAccount"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/checkAccountResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/checkAccountErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/disbursement/addDisbursementInstrument": {
+      "post": {
+        "summary": "check Account",
+        "tags": ["Disbursement"],
+        "description": "check Account",
+        "parameters": [
+          {
+            "name": "check Account",
+            "in": "body",
+            "description": "checkAccount",
+            "schema": {
+              "$ref": "#/definitions/addDisbursementInstrument"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getDisbursementInstrumentErrorResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/checkAccountErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/disbursement/disbursement-instrument/{instrumentId}": {
+      "get": {
+        "summary": "get disbursement status",
+        "tags": ["Disbursement"],
+        "description": "get disbursement status",
+        "parameters": [
+          {
+            "name": "instrumentId",
+            "in": "path",
+            "schema": {}
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {}
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/disbursement/disbursement-instrument/list/{payeeId}": {
+      "get": {
+        "summary": "get disbursement status",
+        "tags": ["Disbursement"],
+        "description": "get disbursement status",
+        "parameters": [
+          {
+            "name": "payeeId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/definitions/getListofDisbursementInstruments"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getListofDisbursementInstrumentsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getListofDisbursementInstrumentsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/disbursement/deleteInstrument": {
+      "post": {
+        "summary": "get disbursement status",
+        "tags": ["Disbursement"],
+        "description": "get disbursement status",
+        "parameters": [
+          {
+            "name": "instrumentId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/definitions/deleteInstrument"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getListofDisbursementInstrumentsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getListofDisbursementInstrumentsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/prepaid/activate": {
+      "post": {
+        "summary": "prepaid activate",
+        "tags": ["prepaid"],
+        "description": "prepaid activate",
+        "parameters": [
+          {
+            "name": "prepaid activate",
+            "in": "body",
+            "description": "prepaid activate for user",
+            "schema": {
+              "$ref": "#/definitions/prepaidActivate"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/prepaidActivateResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/prepaidActivateErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/prepaid/replace": {
+      "post": {
+        "summary": "prepaid replace",
+        "tags": ["prepaid"],
+        "description": "prepaid replace",
+        "parameters": [
+          {
+            "name": "prepaid replace",
+            "in": "body",
+            "description": "prepaid replace for user",
+            "schema": {
+              "$ref": "#/definitions/prepaidReplace"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/prepaidReplaceResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/prepaidReplaceErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/prepaid/reload": {
+      "post": {
+        "summary": "prepaid reload",
+        "tags": ["prepaid"],
+        "description": "prepaid reload",
+        "parameters": [
+          {
+            "name": "prepaid reload",
+            "in": "body",
+            "description": "prepaid reload for user",
+            "schema": {
+              "$ref": "#/definitions/prepaidReload"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/prepaidReloadResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/prepaidReloadErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/merchant/getMerchantDetails": {
+      "get": {
+        "summary": "getMerchantDetails",
+        "tags": ["merchant"],
+        "description": "getMerchantDetails",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantDetailsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantDetailsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantBalance": {
+      "get": {
+        "summary": "getMerchantBalance",
+        "tags": ["merchant"],
+        "description": "getMerchantBalance",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantBalanceResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantBalanceErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getTransactionReport": {
+      "get": {
+        "summary": "getTransactionReport",
+        "tags": ["merchant"],
+        "description": "getTransactionReport",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getTransactionReportResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getTransactionReportErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getFundingReport": {
+      "get": {
+        "summary": "getFundingReport",
+        "tags": ["merchant"],
+        "description": "getFundingReport",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getFundingReportResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getFundingReportErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/balanceToPayee": {
+      "post": {
+        "summary": "balanceToPayee",
+        "tags": ["merchant"],
+        "description": "balance To Payee",
+        "parameters": [
+          {
+            "name": "balance To Payee",
+            "in": "body",
+            "description": "balanceToPayee",
+            "schema": {
+              "$ref": "#/definitions/balanceToPayee"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/balanceToPayeeResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/balanceToPayeeErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getPayeeBalance": {
+      "get": {
+        "summary": "getPayeeBalance",
+        "tags": ["merchant"],
+        "description": "getPayeeBalance",
+        "parameters": [
+          {
+            "name": "payeeId",
+            "in": "query",
+            "description": "getPayeeBalance",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getPayeeBalanceResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getPayeeBalanceErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getlimits": {
+      "get": {
+        "summary": "getlimitsDetails",
+        "tags": ["merchant"],
+        "description": "getlimits",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getlimitsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getlimitsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getPrograms": {
+      "get": {
+        "summary": "getlimitsDetails",
+        "tags": ["merchant"],
+        "description": "getlimits",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getProgramsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getProgramsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/:merchantId/list": {
+      "get": {
+        "summary": "getMerchantList",
+        "tags": ["merchant"],
+        "description": "getMerchantList",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantListResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getMerchantListErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/merchant/:program/age-restriction/:country": {
+      "get": {
+        "summary": "getProgramAgeRestriction",
+        "tags": ["merchant"],
+        "description": "getProgramAgeRestriction",
+        "parameters": [
+          {
+            "name": "getProgramAgeRestriction",
+            "in": "path",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "program": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true,
+            "description": "Please enter _id"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/getProgramAgeRestrictionResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/getProgramAgeRestrictionErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/crossborder/createTransaction": {
+      "post": {
+        "summary": "createTransaction",
+        "tags": ["crossborder"],
+        "description": "createTransaction",
+        "parameters": [
+          {
+            "name": "createTransaction",
+            "in": "body",
+            "description": "createTransaction",
+            "schema": {
+              "$ref": "#/definitions/createTransaction"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/createTransactionResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/createTransactionErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/getCountryServices": {
+      "get": {
+        "summary": "getCountryServices",
+        "tags": ["crossborder"],
+        "description": "getCountryServices",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getCountryServicesResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getCountryServicesErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/getSorcesOfFunds": {
+      "get": {
+        "summary": "getSorcesOfFunds",
+        "tags": ["crossborder"],
+        "description": "getSorcesOfFunds",
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getSorcesOfFundsResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getSorcesOfFundsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/type-of-ids/{country}": {
+      "get": {
+        "summary": "getSenderTypeOfIDs",
+        "tags": ["crossborder"],
+        "description": "getSenderTypeOfIDs",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "type-of-ids/{country}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/type-of-ids/{country}Response"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/type-of-ids/{country}ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/type-of-ids-receiver/{country}": {
+      "get": {
+        "summary": "getReceiverTypeOfIDs",
+        "tags": ["crossborder"],
+        "description": "getReceiverTypeOfIDs",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/type-of-ids-receiver/:countryResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/type-of-ids-receiver/:countryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/type-of-accounts/{country}": {
+      "get": {
+        "summary": "getAccountTypes",
+        "tags": ["crossborder"],
+        "description": "getAccountTypes",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/type-of-accounts/:countryResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/type-of-accounts/:countryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/cities/{country}": {
+      "get": {
+        "summary": "getCities",
+        "tags": ["crossborder"],
+        "description": "getCities",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/cities/:country"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/cities/:country"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/banks/{country}": {
+      "get": {
+        "summary": "getBanks",
+        "tags": ["crossborder"],
+        "description": "getBanks",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/banks/:countryResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/banks/:countryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/bank/{bankId}/branches": {
+      "get": {
+        "summary": "getBankBranches",
+        "tags": ["crossborder"],
+        "description": "getBankBranches",
+        "parameters": [
+          {
+            "name": "bankId",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/bank/:bankId/branchesResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/bank/:bankId/branchesErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/purposes/{country}": {
+      "get": {
+        "summary": "getPurposes",
+        "tags": ["crossborder"],
+        "description": "getPurposes",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "description": "createTransaction",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/purposes/:countryResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/purposes/:countryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/getPayers": {
+      "post": {
+        "summary": "getPayers",
+        "tags": ["crossborder"],
+        "description": "getPayers",
+        "parameters": [
+          {
+            "name": "getPayers",
+            "in": "body",
+            "description": "getPayers",
+            "schema": {
+              "$ref": "#/definitions/getPayers"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/getPayersResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/getPayersErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/calculate": {
+      "post": {
+        "summary": "calculate",
+        "tags": ["crossborder"],
+        "description": "calculate",
+        "parameters": [
+          {
+            "name": "calculate",
+            "in": "body",
+            "description": "calculate",
+            "schema": {
+              "$ref": "#/definitions/calculate"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/calculateResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/calculateErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/exchangeRate": {
+      "post": {
+        "summary": "exchangeRate",
+        "tags": ["crossborder"],
+        "description": "exchangeRate",
+        "parameters": [
+          {
+            "name": "exchangeRate",
+            "in": "body",
+            "description": "exchangeRate",
+            "schema": {
+              "$ref": "#/definitions/exchangeRate"
+            }
+          }
+        ],
+
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "  status: true ",
+            "schema": {
+              "$ref": "#/definitions/exchangeRateResponse"
+            }
+          },
+          "200": {
+            "description": " status: false ",
+            "schema": {
+              "$ref": "#/definitions/exchangeRateErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/crossborder/newRecipient": {
+      "post": {
+        "summary": "new Recipient",
+        "tags": ["crossborder"],
+        "description": "new Recipient",
+        "parameters": [
+          {
+            "name": "newRecipient",
+            "in": "body",
+            "description": "new Recipient",
+            "schema": {
+              "$ref": "#/definitions/newRecipient"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "new Recipient Success",
+            "schema": {
+              "$ref": "#/definitions/newRecipientResponse"
+            }
+          },
+          "200": {
+            "description": "new Recipient failed",
+            "schema": {
+              "$ref": "#/definitions/newRecipientErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/auth/logout": {
+      "post": {
+        "summary": "logout user",
+        "tags": ["logout"],
+        "description": "logout user",
+        "parameters": [
+          {
+            "name": "logout",
+            "in": "body",
+            "description": "logout user",
+            "schema": {
+              "$ref": "#/definitions/logout"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "logout Success",
+            "schema": {
+              "$ref": "#/definitions/logout"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "User": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "addKyc": {
+      "properties": {
+        "identificationType": {
+          "type": "string"
+        },
+        "identificationNumber": {
+          "type": "string"
+        },
+        "identificationDate": {
+          "type": "date"
+        },
+        "identificationDateOfExpiration": {
+          "type": "date"
+        },
+        "identificationLocation": {
+          "type": "string"
+        }
+      }
+    },
+    "kycDone": {
+      "properties": {
+        "wallet": {
+          "type": "string"
+        }
+      }
+    },
+    "kycDoneResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "kycDoneErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "walletCreate": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        }
+      }
+    },
+    "walletCreateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "walletCreateErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getWalletBalance": {
+      "properties": {
+        "wallet": {
+          "type": "string"
+        }
+      }
+    },
+    "getWalletBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getWalletBalanceErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "GetWalletTransactionHistory": {
+      "properties": {
+        "wallet": {
+          "type": "string"
+        }
+      }
+    },
+    "GetWalletTransactionHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetWalletTransactionHistoryErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "walletAdd": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "walletAddResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "walletAddErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "walletWithdraw": {
+      "properties": {
+        "wallet": {
+          "type": "string"
+        },
+        "payeeId": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "referenceId": {
+          "type": "string"
+        }
+      }
+    },
+    "walletWithdrawResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "walletWithdrawErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "disableWallet": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        }
+      }
+    },
+    "disableWalletResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "disableWalletErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "enableWallet": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        }
+      }
+    },
+    "enableWalletResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "enableWalletErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "addDisbursementV1": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "disbursementNumber": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "type": "string"
+        },
+        "bankNumber": {
+          "type": "string"
+        },
+        "branchTransitNumber": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "instrumentId": {
+          "type": "string"
+        },
+        "program": {
+          "type": "number"
+        }
+      }
+    },
+    "addDisbursementV1Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "addDisbursementV1ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "disbursements/{disbursement_id}": {
+      "properties": {
+        "disbursement_id": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursements/:disbursement_idResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursements/:disbursement_idErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "checkAccount": {
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "disbursementNumber": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "type": "string"
+        }
+      }
+    },
+    "checkAccountResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "checkAccountErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "addDisbursementInstrument": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        },
+        "disbursementNumber": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "bankNumber": {
+          "type": "string"
+        },
+        "branchTransitNumber": {
+          "type": "string"
+        },
+        "type": {
+          "type": "number"
+        }
+      }
+    },
+    "addDisbursementInstrumentResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "addDisbursementInstrumentErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "disbursement-instrument/:instrumentId": {
+      "properties": {
+        "instrumentId": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursement-instrument/:instrumentIdResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursement-instrument/:instrumentIdErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "disbursement-instrument/list/:payeeId": {
+      "properties": {
+        "payeeId": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursement-instrument/list/:payeeIdResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "disbursement-instrument/list/:payeeIdErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "deleteInstrument": {
+      "properties": {
+        "instrumentId": {
+          "type": "string"
+        }
+      }
+    },
+    "deleteInstrumentResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "deleteInstrumentErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "prepaidActivate": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "cardHash": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidActivateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidActivateErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidReplace": {
+      "properties": {
+        "fromCardHash": {
+          "type": "string"
+        },
+        "toCardHash": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidReplaceResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidReplaceErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidReload": {
+      "properties": {
+        "cardHash": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "prepaidReloadResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "prepaidReloadErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "userEmail": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "signup": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "countryId": {
+          "type": "string"
+        }
+      }
+    },
+    "signupResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "signupErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "socialsignup": {
+      "properties": {
+        "userid": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "countryId": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        }
+      }
+    },
+    "socialsignupResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "socialsignupErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "verifyOtp": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "otp": {
+          "type": "string"
+        }
+      }
+    },
+    "verifyOtpResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "verifyOtpErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "reSendOtp": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "resendOtpResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "resendOtpErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "resetPassword": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "NewPassword": {
+          "type": "string"
+        },
+        "confirmNewPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "resetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "resetPasswordErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "changePassword": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "oldpassword": {
+          "type": "string"
+        },
+        "NewPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "changePasswordResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "changePasswordErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "socialSignin": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        }
+      }
+    },
+    "socialSigninResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "socialSigninErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "signin": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "signinResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "signinErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "AddActiveCountries": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isDelete": {
+          "type": "boolean"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "flagUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "AddActiveCountriesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AddActiveCountriesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUserDetails": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUserDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUserDetailsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "updateUserProfiles": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "profilePicture": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUserProfilesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUserProfilesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getMerchantDetails": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantDetailsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantBalance": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantBalanceErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getTransactionReport": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getTransactionReportResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getTransactionReportErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getFundingReport": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getFundingReportResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getFundingReportErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "balanceToPayee": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "balanceToPayeeResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "payeeId": {
+              "type": "number"
+            },
+            "amount": {
+              "type": "number"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "balanceToPayeeErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getPayeeBalance": {
+      "properties": {
+        "merchant": {
+          "type": "number"
+        }
+      }
+    },
+    "getPayeeBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getPayeeBalanceErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getlimits": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getlimitsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getlimitsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "getPrograms": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getProgramsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getProgramsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getMerchantList": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantListResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getMerchantListErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getProgramAgeRestriction": {
+      "properties": {
+        "merchant": {
+          "type": "string"
+        }
+      }
+    },
+    "getProgramAgeRestrictionResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getProgramAgeRestrictionErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "createTransaction": {
+      "type": "object",
+      "properties": {
+        "receiver": {
+          "properties": {
+            "payeeId": {
+              "type": "number"
+            }
+          }
+        },
+        "transaction": {
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "paymentMode": {
+              "type": "string"
+            },
+            "sourceCurrency": {
+              "type": "string"
+            },
+            "receiveCurrency": {
+              "type": "string"
+            },
+            "account": {
+              "type": "string"
+            },
+            "branch": {
+              "type": "string"
+            },
+            "accountType": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "sourceOfFunds": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "createTransactionResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "payeeId": {
+              "type": "number"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "cardHash": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "createTransactionErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getCountryServices": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getCountryServicesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getCountryServicesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getSorcesOfFunds": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getSorcesOfFundsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getSorcesOfFundsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getSenderTypeOfIDs": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "type-of-ids/{country}Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "type-of-ids/{country}ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getReceiverTypeOfIDs": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getReceiverTypeOfIDsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getReceiverTypeOfIDsErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getAccountTypes": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getAccountTypesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getAccountTypesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getCities": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getCitiesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getBanks": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getBanksResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getBanksErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getBankBranches": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getBankBranchesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getBankBranchesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getPurposes": {
+      "properties": {
+        "crossborder": {
+          "type": "string"
+        }
+      }
+    },
+    "getPurposesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getPurposesErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getPayers": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "receiveCurrency": {
+          "type": "string"
+        },
+        "sourceCurrency": {
+          "type": "string"
+        },
+        "cityId": {
+          "type": "number"
+        }
+      }
+    },
+    "getPayersResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "paymentMode": {
+              "type": "string"
+            },
+            "receiveCurrency": {
+              "type": "string"
+            },
+            "sourceCurrency": {
+              "type": "string"
+            },
+            "receiveCountry": {
+              "type": "string"
+            },
+            "sentAmount": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "getPayersErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "calculate": {
+      "properties": {
+        "paymentMode": {
+          "type": "string"
+        },
+        "receiveCurrency": {
+          "type": "string"
+        },
+        "sourceCurrency": {
+          "type": "string"
+        },
+        "receiveCountry": {
+          "type": "string"
+        },
+        "sentAmount": {
+          "type": "number"
+        }
+      }
+    },
+    "calculateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "paymentMode": {
+              "type": "string"
+            },
+            "receiveCurrency": {
+              "type": "string"
+            },
+            "sourceCurrency": {
+              "type": "string"
+            },
+            "cityId": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "calculateErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "exchangeRate": {
+      "properties": {
+        "sourceCurrency": {
+          "type": "string"
+        },
+        "receiveCountry": {
+          "type": "string"
+        }
+      }
+    },
+    "exchangeRateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "properties": {
+            "sourceCurrency": {
+              "type": "string"
+            },
+            "receiveCountry]": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "exchangeRateErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "newRecipient": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "countryId": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street_line_2": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "newRecipientResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "newRecipientErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "wList": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "notificationId": {
+          "type": "string"
+        }
+      }
+    },
+    "wListResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "wListErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "logout": {},
+    "token": {
+      "type": "string"
+    },
+    "sendverificationlink": {
+      "properties": {
+        "payeeId": {
+          "type": "number"
+        }
+      }
+    },
+    "sendverificationlinkResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "sendverificationlinkErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "unusual-transaction": {
+      "properties": {
+        "reportDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "activityDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "employeeName": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "clientAccountNumber": { "type": "string" },
+        "gender": { "type": "string" },
+        "businessName": { "type": "string" },
+        "relationsipToBusiness": { "type": "string" },
+        "transactionLocation": { "type": "string" },
+        "transactionCompleted": { "type": "string" },
+        "transactionDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "amount": { "type": "number" },
+        "currency": { "type": "string" },
+        "program": { "type": "string" },
+        "transactionDescription": { "type": "string" },
+        "actionTaken": { "type": "string" },
+        "statusOfAccount": { "type": "string" }
+      }
+    },
+    "unusual-transactionResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "unusual-transactionErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+
+    "getUserByEmailSearch": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "getUserByEmailSearchResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "getUserByEmailSearchErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
